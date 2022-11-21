@@ -1,0 +1,17 @@
+# Fusion builder
+#
+# VERSION 0.0.1
+
+FROM golang:1.7-wheezy
+LABEL Description="Builds Fusion binaries"
+
+ARG GITHUB_TOKEN
+ENV GITHUB_TOKEN ${GITHUB_TOKEN}
+
+RUN echo "machine github.com login ${GITHUB_TOKEN}" > ~/.netrc
+
+COPY . ${GOPATH}/src/github.com/SimonRichardson/colossus/fusion/
+WORKDIR ${GOPATH}/src/github.com/SimonRichardson/colossus/fusion/
+
+ENTRYPOINT ["make", "-s"]
+CMD ["internal-fusion-build"]

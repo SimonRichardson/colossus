@@ -1,0 +1,8 @@
+namespace schema;
+
+table OKInt {
+    duration:long;
+    records:long;
+}
+
+root_type OKInt;

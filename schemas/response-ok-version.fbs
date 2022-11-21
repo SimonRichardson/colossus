@@ -1,0 +1,10 @@
+include "common.fbs";
+
+namespace schema;
+
+table OKVersion {
+    duration:long;
+    records:schema.Version;
+}
+
+root_type OKVersion;

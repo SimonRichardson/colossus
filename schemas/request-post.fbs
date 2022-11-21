@@ -1,0 +1,23 @@
+include "common.fbs";
+
+namespace schema;
+
+table PostRecord {
+    typ:schema.Type = Post;
+    id:schema.Id (required);
+    owner_id:schema.Id (required);
+    updated:ulong;
+    expiry:ulong;
+    reserved:ulong;
+    cost:schema.Cost (required);
+    transaction_id:schema.Id (required);
+}
+
+table PostRequest {
+    score:double;
+    max_size:ulong;
+    expiry:ulong;
+    records:[PostRecord];
+}
+
+root_type PostRequest;

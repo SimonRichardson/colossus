@@ -1,0 +1,12 @@
+include "common.fbs";
+
+namespace schema;
+
+table Header {
+    typ:schema.Type = Unknown;
+    id:schema.Id (required);
+    owner_id:schema.Id (required);
+    updated:ulong;
+}
+
+root_type Header;

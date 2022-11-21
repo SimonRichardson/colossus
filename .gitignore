@@ -1,0 +1,12 @@
+artifacts
+bin
+data
+vendor
+
+.DS_Store
+.vscode
+
+bindata.go
+
+*.tmp
+*.tar.gz

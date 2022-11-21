@@ -1,0 +1,7 @@
+namespace schema;
+
+table OKNoContent {
+    duration:long;
+}
+
+root_type OKNoContent;

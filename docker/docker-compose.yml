@@ -1,0 +1,50 @@
+version: "2"
+services:
+  mongo:
+    image: mongo:latest
+    volumes:
+      - ./mongo/mongo.conf:/etc/mongo.conf
+    command: "mongod --config /etc/mongo.conf"
+  store1_a:
+    image: redis:latest
+    volumes:
+      - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
+  store1_b:
+    image: redis:latest
+    volumes:
+      - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
+  store2_a:
+    image: redis:latest
+    volumes:
+      - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
+  store2_b:
+    image: redis:latest
+    volumes:
+      - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
+  store3_a:
+    image: redis:latest
+    volumes:
+      - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
+  store3_b:
+    image: redis:latest
+    volumes:
+      - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
+  counter1:
+    image: redis:latest
+    volumes:
+      - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
+  counter2:
+    image: redis:latest
+    volumes:
+      - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
+  counter3:
+    image: redis:latest
+    volumes:
+      - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
+  notifier:
+    image: redis:latest
+    volumes:
+      - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
+  consul:
+    image: consul:latest
+    command: "agent -dev -client=0.0.0.0"

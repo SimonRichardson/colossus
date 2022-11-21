@@ -1,0 +1,20 @@
+include "common.fbs";
+
+namespace schema;
+
+table RollbackRecord {
+    typ:schema.Type = Rollback;
+    id:schema.Id (required);
+    owner_id:schema.Id (required);
+    updated:ulong;
+    transaction_id:schema.Id (required);
+}
+
+table RollbackRequest {
+    score:double;
+    max_size:ulong;
+    expiry:ulong;
+    records:[RollbackRecord];
+}
+
+root_type RollbackRequest;

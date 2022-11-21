@@ -1,0 +1,24 @@
+include "common.fbs";
+
+namespace schema;
+
+table PutRecord {
+    typ:schema.Type = Put;
+    id:schema.Id (required);
+    owner_id:schema.Id (required);
+    updated:ulong;
+    purchased:ulong;
+    event_cost:schema.Cost (required);
+    event_dates:schema.Dates (required);
+    transaction_id:schema.Id (required);
+    codes:schema.Codes;
+}
+
+table PutRequest {
+    score:double;
+    max_size:ulong;
+    expiry:ulong;
+    records:[PutRecord];
+}
+
+root_type PutRequest;

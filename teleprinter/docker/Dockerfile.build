@@ -1,0 +1,17 @@
+# Teleprinter builder
+#
+# VERSION 0.0.1
+
+FROM golang:1.7-wheezy
+LABEL Description="Builds Teleprinter binaries"
+
+ARG GITHUB_TOKEN
+ENV GITHUB_TOKEN ${GITHUB_TOKEN}
+
+RUN echo "machine github.com login ${GITHUB_TOKEN}" > ~/.netrc
+
+COPY . ${GOPATH}/src/github.com/SimonRichardson/colossus/teleprinter/
+WORKDIR ${GOPATH}/src/github.com/SimonRichardson/colossus/teleprinter/
+
+ENTRYPOINT ["make", "-s"]
+CMD ["internal-teleprinter-build"]

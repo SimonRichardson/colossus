@@ -1,0 +1,18 @@
+include "common.fbs";
+
+namespace schema;
+
+table Operation {
+    op:string (required);
+    path:string;
+    value:string;
+}
+
+table PatchRequest {
+    operations:[Operation];
+    score:double;
+    max_size:ulong;
+    expiry:ulong;
+}
+
+root_type PatchRequest;

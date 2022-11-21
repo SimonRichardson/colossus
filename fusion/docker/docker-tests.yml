@@ -1,0 +1,8 @@
+version: "2"
+services:
+  base-test:
+    image: golang:1.7
+    volumes:
+      - "../:/go/src/github.com/SimonRichardson/colossus/fusion"
+    working_dir: /go/src/github.com/SimonRichardson/colossus/fusion/
+    entrypoint: make

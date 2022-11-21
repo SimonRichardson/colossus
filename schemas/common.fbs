@@ -1,0 +1,72 @@
+namespace schema;
+
+enum Type : byte { Unknown = 1, Post, Put, Delete, Rollback }
+
+table Id {
+    hex:string (required);
+}
+
+table Cost {
+    currency:string (required);
+    price:ulong;
+}
+
+table Version {
+    version:string;
+}
+
+table KeyFieldScoreTxnValue {
+    key:string;
+    field:string;
+    score:double;
+    txn:string;
+    value:string;
+}
+
+table KeyField {
+    key:string;
+    field:string;
+}
+
+root_type KeyField;
+
+table KeyFieldSizeExpiry {
+    key:string;
+    field:string;
+    size:long;
+    expiry:long;
+}
+
+table KeyFieldScoreSizeExpiry {
+    key:string;
+    field:string;
+    score:double;
+    size:long;
+    expiry:long;
+}
+
+root_type KeyFieldScoreSizeExpiry;
+
+table Codes {
+    barcode_type:string;
+    barcode_origin:string;
+    barcode_source:string;
+    qrcode:string;
+}
+
+table Location {
+    lat:double;
+    lng:double;
+    accuracy:double;
+}
+
+table Dates {
+    start:ulong;
+    end:ulong;
+}
+
+table QueryRecord {
+    key:string;
+    field:string;
+    record:string;
+}

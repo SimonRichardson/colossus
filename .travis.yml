@@ -1,0 +1,37 @@
+language: go
+
+services:
+  - docker
+
+sudo: required
+
+go:
+  - 1.7
+
+env:
+  secure: "gv98soP5E/8nb0sUogPgx85O0VYPFZvGdSI7sIjUGR1iruukcGW9U+2L6l5/3/nYu7jjT18pnpDUB6LO2fTQVJ1t/Hb+G26LC07HvN5+uDIOb6BFPGeB9Fax5zpWDH/0A8IkLJQ0vXkJzpCWu2OY8pBDsoAEi3vi4Fc0R7B4tKEh0PhKLCM4LTgEMAr0iw8DFbiiar0TIi/RMku3DDSU95lvQpCmm+oGjgW91Kvno0Zk8acxfzCrzFyyk1G5i4OFjRtOOXxb0FSlAMXdb7mPOJYNeSc5KlGr9NWFBSieaMgquDxrtEZlUnJmTeo6fLr1FlC+i+HHKVFNXb7XtvC4C0QvN0bmkLUL6KCaA+Muxi8FAjWCreoNbvpF2uGBguqsTCRHFuzLllU7+Snx0IIy7MLeCNzJg1Z/s0AskcbWbqVAbVd1Z5xpPJeUbCAJPPVpdcZi8H3r3Q8Au8UvNv6sICTZGn+XDuBpLWZkgJNFPfuw8MEU0HWjgag10QMFaQY4DUhpLDqQjIDC4vfTUDkAkX37fgVRqDw0qs2XyZH4yDs5Uiu3cUhoTy0fQzezrO0tJ2M1LDZKuPT9OvnGuRwaZVuTa5yQA17JpUHNlXAdfZUyWpNWcK7dO6imB3x80/Z8DS03Up15k38o+cm2I2N6IBhZ3Mk1m4JwZ+Pxge3/NjU="
+
+before_install:
+  - echo "machine github.com login ${GITHUB_TOKEN}" > ~/.netrc; chmod 600 ~/.netrc
+  - sudo sh -c 'echo "deb https://apt.dockerproject.org/repo ubuntu-precise main" > /etc/apt/sources.list.d/docker.list'
+  - sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+  - sudo apt-get update
+  - sudo apt-key update
+  - sudo apt-get install docker-engine
+  - curl -L https://github.com/docker/compose/releases/download/1.7.0/docker-compose-`uname -s`-`uname -m` | sudo tee /usr/local/bin/docker-compose > /dev/null
+  - sudo chmod +x /usr/local/bin/docker-compose
+  - docker-compose -v
+  - docker -v
+  - echo -e "\n52.18.92.67 registry.tixey.com" | sudo tee -a /etc/hosts
+
+install:
+  - make setup
+
+before_script:
+  - make setup-env
+  - sleep 5
+
+script:
+  - make TARGET=colossus test-ci
+  - make TARGET=colossusw test-ci
+  - make TARGET=colossuss test-ci

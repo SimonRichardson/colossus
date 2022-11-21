@@ -1,0 +1,10 @@
+include "common.fbs";
+
+namespace schema;
+
+table OKKeyFieldScoreTxnValues {
+    duration:long;
+    records:[schema.KeyFieldScoreTxnValue];
+}
+
+root_type OKKeyFieldScoreTxnValues;

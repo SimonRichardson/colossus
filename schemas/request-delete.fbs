@@ -1,0 +1,20 @@
+include "common.fbs";
+
+namespace schema;
+
+table DeleteRecord {
+    typ:schema.Type = Delete;
+    id:schema.Id (required);
+    owner_id:schema.Id (required);
+    updated:ulong;
+    transaction_id:schema.Id (required);
+}
+
+table DeleteRequest {
+    score:double;
+    max_size:ulong;
+    expiry:ulong;
+    records:[DeleteRecord];
+}
+
+root_type DeleteRequest;
